@@ -1,0 +1,12 @@
+roles/
+  zos_deploy/
+    defaults/
+      main.yml
+    tasks/
+      main.yml
+      create_datasets.yml
+      copy_source.yml
+      submit_compile.yml
+      cics_newcopy.yml
+    handlers/
+      main.yml
