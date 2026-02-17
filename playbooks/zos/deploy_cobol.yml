@@ -1,0 +1,29 @@
+---
+- name: Deploy COBOL no z/OS
+  hosts: zos
+  gather_facts: no
+
+  tasks:
+
+    - name: Criar PDS SOURCE
+      zos_data_set:
+        name: USERID.SOURCE
+        type: pds
+        state: present
+
+    - name: Copiar fonte COBOL
+      zos_copy:
+        src: ../../lab/cobol/PROG01.cbl
+        dest: USERID.SOURCE(PROG01)
+
+    - name: Submeter compilação
+      zos_job_submit:
+        src: USERID.JCL(COMPILE)
+        location: DATA_SET
+        wait: true
+      register: result
+
+    - name: Validar RC
+      fail:
+        msg: "Erro na compilação"
+      when: result.jobs[0].ret_code.code != 0

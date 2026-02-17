@@ -1,0 +1,30 @@
+all:
+  children:
+
+    linux:
+      children:
+
+        dev:
+          hosts:
+            linuxdev01:
+              ansible_host: 192.168.10.11
+              ansible_user: ansible
+              ansible_ssh_private_key_file: ~/.ssh/id_rsa
+              ansible_become: true
+              ansible_become_method: sudo
+
+        qa:
+          hosts:
+            linuxqa01:
+              ansible_host: 192.168.10.21
+              ansible_user: ansible
+              ansible_become: true
+              ansible_become_method: sudo
+
+        prod:
+          hosts:
+            linuxprod01:
+              ansible_host: 192.168.10.31
+              ansible_user: ansible
+              ansible_become: true
+              ansible_become_method: sudo

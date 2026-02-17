@@ -1,0 +1,31 @@
+---
+- name: Submit JCL and Wait for Completion
+  hosts: zos
+  gather_facts: no
+
+  collections:
+    - ibm.ibm_zos_core
+
+  vars:
+    jcl_dataset: "USERID.JCL(MYJOB)"
+
+  tasks:
+
+    - name: Submit JCL from PDS
+      zos_job_submit:
+        src: "{{ jcl_dataset }}"
+        location: DATA_SET
+        wait: true
+        wait_time_s: 120
+      register: job_output
+
+    - name: Display Job ID
+      debug:
+        msg: "Job submitted with ID {{ job_output.jobs[0].job_id }}"
+
+    - name: Display Return Code
+      debug:
+        msg: "Return Code: {{ job_output.jobs[0].ret_code.code }}"
+
+    - name: Fail if RC not zero
+      fail:

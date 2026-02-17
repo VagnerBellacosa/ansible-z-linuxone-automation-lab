@@ -1,0 +1,29 @@
+---
+- name: Create QSAM FB Dataset on z/OS
+  hosts: zos
+  gather_facts: no
+
+  collections:
+    - ibm.ibm_zos_core
+
+  vars:
+    dataset_name: "IBMUSER.ANSIBLE.FILE1"
+
+  tasks:
+
+    - name: Create Sequential QSAM FB dataset
+      zos_data_set:
+        name: "{{ dataset_name }}"
+        type: seq
+        state: present
+        record_format: fb
+        record_length: 80
+        block_size: 800
+        space_primary: 5
+        space_secondary: 2
+        space_type: cyl
+        replace: no
+
+    - name: Display dataset creation result
+      debug:
+        msg: "Dataset {{ dataset_name }} successfully created."

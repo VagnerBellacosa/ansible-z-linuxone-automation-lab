@@ -1,0 +1,22 @@
+---
+- name: Perform CICS NEWCOPY via Ansible
+  hosts: zos
+  gather_facts: no
+
+  collections:
+    - ibm.ibm_zos_core
+
+  vars:
+    cics_region: "CICSPROD"
+    program_name: "PROG01"
+
+  tasks:
+
+    - name: Execute NEWCOPY command in CICS
+      zos_operator:
+        cmd: "F {{ cics_region }},NEWCOPY {{ program_name }}"
+      register: cics_response
+
+    - name: Display CICS response
+      debug:
+        var: cics_response

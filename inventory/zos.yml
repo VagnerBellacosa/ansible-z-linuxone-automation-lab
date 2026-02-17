@@ -1,0 +1,25 @@
+all:
+  children:
+
+    zos:
+      hosts:
+        zosdev:
+          ansible_host: 192.168.100.10
+          ansible_user: ZOSUSER
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa
+          ansible_connection: ssh
+          ansible_port: 22
+
+          # z/OS specific variables
+          ansible_python_interpreter: auto_silent
+          zosmf_host: 192.168.100.10
+          zosmf_port: 443
+          zosmf_protocol: https
+          zosmf_user: ZOSUSER
+          zosmf_password: "{{ vault_zos_password }}"
+
+        zosqa:
+          ansible_host: 192.168.100.20
+          ansible_user: ZOSUSERQA
+          ansible_connection: ssh
+          ansible_port: 22

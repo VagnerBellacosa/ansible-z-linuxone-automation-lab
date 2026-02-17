@@ -1,6 +1,6 @@
 # 🚀 Ansible + IBM Z + LinuxONE Automation Lab
 
-![](C:\Users\vagne\Documentos\GitHub\ansible-z-linuxone-automation-lab\images\Ansible_ca.png)
+![Ansible e Mainframe dupla do barulho](C:\Users\vagne\Documentos\GitHub\ansible-z-linuxone-automation-lab\images\Ansible_ca.png)
 
 Repositório educacional e prático focado em automação de ambientes Mainframe (z/OS) e LinuxONE utilizando Ansible.
 
@@ -17,6 +17,8 @@ Demonstrar como integrar:
 - DevOps Pipeline
 
 ## 🏗 Arquitetura
+
+![Fluxo teorico da automação](C:\Users\vagne\Documentos\GitHub\ansible-z-linuxone-automation-lab\images\ArquiteturaFluxoAutomacao.png)
 
 Developer → Git → Pipeline → Ansible → z/OS / LinuxONE
 
@@ -53,3 +55,17 @@ Developer → Git → Pipeline → Ansible → z/OS / LinuxONE
 ---
 
 "Automação não substitui o mainframe. Ela eleva o profissional."
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use e abuse deste conteudo. Compartilhe, enriqueça  e contribua. Juntos somos mais fortes

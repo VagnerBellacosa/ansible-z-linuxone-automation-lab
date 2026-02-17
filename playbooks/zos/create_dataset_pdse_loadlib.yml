@@ -1,0 +1,8 @@
+- name: Create PDSE for Load Modules
+  zos_data_set:
+    name: "IBMUSER.EXEC.LOADLIB"
+    type: pdse
+    record_format: u
+    space_primary: 10
+    space_secondary: 5
+    space_type: cyl

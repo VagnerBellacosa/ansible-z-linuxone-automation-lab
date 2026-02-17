@@ -1,0 +1,12 @@
+---
+- name: Instalar pacotes Linux
+  hosts: linuxone
+  become: yes
+
+  tasks:
+    - name: Instalar git e python
+      apt:
+        name:
+          - git
+          - python3
+        state: present

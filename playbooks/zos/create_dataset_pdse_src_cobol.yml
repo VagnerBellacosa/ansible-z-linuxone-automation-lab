@@ -1,0 +1,9 @@
+- name: Create PDSE for COBOL Source
+  zos_data_set:
+    name: "USERID.APP.SOURCE"
+    type: pdse
+    record_format: fb
+    record_length: 80
+    space_primary: 5
+    space_secondary: 2
+    space_type: cyl

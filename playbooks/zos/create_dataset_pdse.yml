@@ -1,0 +1,29 @@
+---
+- name: Create PDSE Dataset on z/OS
+  hosts: zos
+  gather_facts: no
+
+  collections:
+    - ibm.ibm_zos_core
+
+  vars:
+    dataset_name: "IBMUSER.WORKBOOK.PDSE"
+
+  tasks:
+
+    - name: Create PDSE Library
+      zos_data_set:
+        name: "{{ dataset_name }}"
+        type: pdse
+        state: present
+        space_primary: 10
+        space_secondary: 5
+        space_type: cyl
+        record_format: u
+        record_length: 0
+        directory_blocks: 10
+        replace: no
+
+    - name: Confirm PDSE creation
+      debug:
+        msg: "PDSE {{ dataset_name }} successfully created."

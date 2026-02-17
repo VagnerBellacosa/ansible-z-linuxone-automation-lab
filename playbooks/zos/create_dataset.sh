@@ -1,0 +1,1 @@
+ansible-playbook -i inventory/zos.yml create_dataset_qsam.yml

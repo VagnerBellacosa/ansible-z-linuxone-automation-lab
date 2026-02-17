@@ -1,0 +1,41 @@
+---
+- name: Configure Linux User
+  hosts: linux
+  become: yes
+
+  vars:
+    username: "devopsuser"
+    user_password: "{{ 'SenhaForte123' | password_hash('sha512') }}"
+    user_shell: "/bin/bash"
+    user_groups: "sudo"
+
+  tasks:
+
+    - name: Ensure group exists
+      group:
+        name: "{{ user_groups }}"
+        state: present
+
+    - name: Create user
+      user:
+        name: "{{ username }}"
+        password: "{{ user_password }}"
+        shell: "{{ user_shell }}"
+        groups: "{{ user_groups }}"
+        append: yes
+        create_home: yes
+        state: present
+
+    - name: Set authorized SSH key
+      authorized_key:
+        user: "{{ username }}"
+        state: present
+        key: "{{ lookup('file', 'files/id_rsa.pub') }}"
+
+    - name: Ensure correct home permissions
+      file:
+        path: "/home/{{ username }}"
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0750'
+        state: directory
